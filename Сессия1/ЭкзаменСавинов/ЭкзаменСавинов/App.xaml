@@ -1,0 +1,29 @@
+﻿<Application x:Class="ЭкзаменСавинов.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ЭкзаменСавинов"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="Os" TargetType="Label">
+            <Setter Property="FontSize" Value="35"/>
+            <Setter Property="Foreground" Value="#FF102770"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="Os2" TargetType="Label">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#FF102770"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="Os3" TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+
+        </Style>
+        <Style x:Key="button" TargetType="Button">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="Background" Value="#FF0B38CD"/>
+
+        </Style>
+    </Application.Resources>
+</Application>

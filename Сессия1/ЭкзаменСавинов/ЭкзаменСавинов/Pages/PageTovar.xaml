@@ -1,0 +1,31 @@
+﻿<Page x:Class="ЭкзаменСавинов.Pages.PageTovar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ЭкзаменСавинов.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageTovar" Background="#FF194DFB">
+
+    <Grid>
+        <DataGrid x:Name="DGridTovar" HorizontalAlignment="Left" Height="244" VerticalAlignment="Top" Width="800" AutoGenerateColumns="False" IsReadOnly="true">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикул" Width="20*" Binding="{Binding Артикул}"/>
+                <DataGridTextColumn Header="Наименование" Width="20*" Binding="{Binding Наименование}"/>
+                <DataGridTextColumn Header="Еденица измерения" Width="20*" Binding="{Binding Единица_измерения}"/>
+                <DataGridTextColumn Header="Стоимость" Width="20*" Binding="{Binding Стоимость}"/>
+                <DataGridTextColumn Header="Размер макс. скидки" Width="20*" Binding="{Binding Размер_максимально_возможной_скидки}"/>
+                <DataGridTextColumn Header="Произваодитель" Width="20*" Binding="{Binding Производитель}"/>
+                <DataGridTextColumn Header="Поставщик" Width="20*" Binding="{Binding Поставщик}"/>
+                <DataGridTextColumn Header="Категория товаров" Width="20*" Binding="{Binding Категория_товара}"/>
+                <DataGridTextColumn Header="Действующая скидка" Width="20*" Binding="{Binding Действующая_скидка}"/>
+                <DataGridTextColumn Header="Кол-во на складе" Width="20*" Binding="{Binding Кол_во_на_складе}"/>
+                <DataGridTextColumn Header="описание" Width="20*" Binding="{Binding Описание}"/>
+                <DataGridTextColumn Header="Изображение" Width="20*" Binding="{Binding Изображение}"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

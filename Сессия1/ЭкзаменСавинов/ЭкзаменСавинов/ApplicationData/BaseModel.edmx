@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Bd_SavinovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="КатегорииТоваров">
+          <Key>
+            <PropertyRef Name="КодКатегории" />
+          </Key>
+          <Property Name="КодКатегории" Type="float" Nullable="false" />
+          <Property Name="НазваниеКатегории" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="Логин" />
+          </Key>
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Имя, отчество" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="255" />
+          <Property Name="Роли" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Роли">
+          <Key>
+            <PropertyRef Name="КодРоли" />
+          </Key>
+          <Property Name="КодРоли" Type="float" Nullable="false" />
+          <Property Name="НазваниеРоли" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Товары">
+          <Key>
+            <PropertyRef Name="Артикул" />
+          </Key>
+          <Property Name="Артикул" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Единица_измерения" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Стоимость" Type="float" Nullable="false" />
+          <Property Name="Размер_максимально_возможной_скидки" Type="float" Nullable="false" />
+          <Property Name="Производитель" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Поставщик" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Категория_товара" Type="float" Nullable="false" />
+          <Property Name="Действующая_скидка" Type="float" Nullable="false" />
+          <Property Name="Кол-во_на _складе" Type="float" Nullable="false" />
+          <Property Name="Описание" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Изображение" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Пользователи_Роли">
+          <End Role="Роли" Type="Self.Роли" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роли">
+              <PropertyRef Name="КодРоли" />
+            </Principal>
+            <Dependent Role="Пользователи">
+              <PropertyRef Name="Роли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Роли_Роли">
+          <End Role="Роли" Type="Self.Роли" Multiplicity="1" />
+          <End Role="Роли1" Type="Self.Роли" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Роли">
+              <PropertyRef Name="КодРоли" />
+            </Principal>
+            <Dependent Role="Роли1">
+              <PropertyRef Name="КодРоли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Товары_КатегорииТоваров">
+          <End Role="КатегорииТоваров" Type="Self.КатегорииТоваров" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="КатегорииТоваров">
+              <PropertyRef Name="КодКатегории" />
+            </Principal>
+            <Dependent Role="Товары">
+              <PropertyRef Name="Категория_товара" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Bd_SavinovModelContainer">
+          <EntitySet Name="КатегорииТоваров" EntityType="Self.КатегорииТоваров" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Роли" EntityType="Self.Роли" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Товары" EntityType="Self.Товары" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Пользователи_Роли" Association="Self.FK_Пользователи_Роли">
+            <End Role="Роли" EntitySet="Роли" />
+            <End Role="Пользователи" EntitySet="Пользователи" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Роли_Роли" Association="Self.FK_Роли_Роли">
+            <End Role="Роли" EntitySet="Роли" />
+            <End Role="Роли1" EntitySet="Роли" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Товары_КатегорииТоваров" Association="Self.FK_Товары_КатегорииТоваров">
+            <End Role="КатегорииТоваров" EntitySet="КатегорииТоваров" />
+            <End Role="Товары" EntitySet="Товары" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bd_SavinovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Bd_SavinovEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="КатегорииТоваров" EntityType="Bd_SavinovModel.КатегорииТоваров" />
+          <EntitySet Name="Пользователи" EntityType="Bd_SavinovModel.Пользователи" />
+          <EntitySet Name="Роли" EntityType="Bd_SavinovModel.Роли" />
+          <EntitySet Name="Товары" EntityType="Bd_SavinovModel.Товары" />
+          <AssociationSet Name="FK_Товары_КатегорииТоваров" Association="Bd_SavinovModel.FK_Товары_КатегорииТоваров">
+            <End Role="КатегорииТоваров" EntitySet="КатегорииТоваров" />
+            <End Role="Товары" EntitySet="Товары" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователи_Роли" Association="Bd_SavinovModel.FK_Пользователи_Роли">
+            <End Role="Роли" EntitySet="Роли" />
+            <End Role="Пользователи" EntitySet="Пользователи" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Роли_Роли" Association="Bd_SavinovModel.FK_Роли_Роли">
+            <End Role="Роли" EntitySet="Роли" />
+            <End Role="Роли1" EntitySet="Роли" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="КатегорииТоваров">
+          <Key>
+            <PropertyRef Name="КодКатегории" />
+          </Key>
+          <Property Name="КодКатегории" Type="Double" Nullable="false" />
+          <Property Name="НазваниеКатегории" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Товары" Relationship="Bd_SavinovModel.FK_Товары_КатегорииТоваров" FromRole="КатегорииТоваров" ToRole="Товары" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="Логин" />
+          </Key>
+          <Property Name="Фамилия" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Имя__отчество" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Логин" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Роли" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Роли1" Relationship="Bd_SavinovModel.FK_Пользователи_Роли" FromRole="Пользователи" ToRole="Роли" />
+        </EntityType>
+        <EntityType Name="Роли">
+          <Key>
+            <PropertyRef Name="КодРоли" />
+          </Key>
+          <Property Name="КодРоли" Type="Double" Nullable="false" />
+          <Property Name="НазваниеРоли" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Пользователи" Relationship="Bd_SavinovModel.FK_Пользователи_Роли" FromRole="Роли" ToRole="Пользователи" />
+          <NavigationProperty Name="Роли1" Relationship="Bd_SavinovModel.FK_Роли_Роли" FromRole="Роли" ToRole="Роли1" />
+          <NavigationProperty Name="Роли2" Relationship="Bd_SavinovModel.FK_Роли_Роли" FromRole="Роли1" ToRole="Роли" />
+        </EntityType>
+        <EntityType Name="Товары">
+          <Key>
+            <PropertyRef Name="Артикул" />
+          </Key>
+          <Property Name="Артикул" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Наименование" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Единица_измерения" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Стоимость" Type="Double" Nullable="false" />
+          <Property Name="Размер_максимально_возможной_скидки" Type="Double" Nullable="false" />
+          <Property Name="Производитель" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Поставщик" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Категория_товара" Type="Double" Nullable="false" />
+          <Property Name="Действующая_скидка" Type="Double" Nullable="false" />
+          <Property Name="Кол_во_на__складе" Type="Double" Nullable="false" />
+          <Property Name="Описание" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Изображение" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="КатегорииТоваров" Relationship="Bd_SavinovModel.FK_Товары_КатегорииТоваров" FromRole="Товары" ToRole="КатегорииТоваров" />
+        </EntityType>
+        <Association Name="FK_Товары_КатегорииТоваров">
+          <End Type="Bd_SavinovModel.КатегорииТоваров" Role="КатегорииТоваров" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Bd_SavinovModel.Товары" Role="Товары" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="КатегорииТоваров">
+              <PropertyRef Name="КодКатегории" />
+            </Principal>
+            <Dependent Role="Товары">
+              <PropertyRef Name="Категория_товара" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователи_Роли">
+          <End Type="Bd_SavinovModel.Роли" Role="Роли" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Bd_SavinovModel.Пользователи" Role="Пользователи" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роли">
+              <PropertyRef Name="КодРоли" />
+            </Principal>
+            <Dependent Role="Пользователи">
+              <PropertyRef Name="Роли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Роли_Роли">
+          <End Type="Bd_SavinovModel.Роли" Role="Роли" Multiplicity="1" />
+          <End Type="Bd_SavinovModel.Роли" Role="Роли1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Роли">
+              <PropertyRef Name="КодРоли" />
+            </Principal>
+            <Dependent Role="Роли1">
+              <PropertyRef Name="КодРоли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Bd_SavinovModelContainer" CdmEntityContainer="Bd_SavinovEntities">
+          <EntitySetMapping Name="КатегорииТоваров">
+            <EntityTypeMapping TypeName="Bd_SavinovModel.КатегорииТоваров">
+              <MappingFragment StoreEntitySet="КатегорииТоваров">
+                <ScalarProperty Name="НазваниеКатегории" ColumnName="НазваниеКатегории" />
+                <ScalarProperty Name="КодКатегории" ColumnName="КодКатегории" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователи">
+            <EntityTypeMapping TypeName="Bd_SavinovModel.Пользователи">
+              <MappingFragment StoreEntitySet="Пользователи">
+                <ScalarProperty Name="Роли" ColumnName="Роли" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Имя__отчество" ColumnName="Имя, отчество" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Роли">
+            <EntityTypeMapping TypeName="Bd_SavinovModel.Роли">
+              <MappingFragment StoreEntitySet="Роли">
+                <ScalarProperty Name="НазваниеРоли" ColumnName="НазваниеРоли" />
+                <ScalarProperty Name="КодРоли" ColumnName="КодРоли" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Товары">
+            <EntityTypeMapping TypeName="Bd_SavinovModel.Товары">
+              <MappingFragment StoreEntitySet="Товары">
+                <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Кол_во_на__складе" ColumnName="Кол-во_на _складе" />
+                <ScalarProperty Name="Действующая_скидка" ColumnName="Действующая_скидка" />
+                <ScalarProperty Name="Категория_товара" ColumnName="Категория_товара" />
+                <ScalarProperty Name="Поставщик" ColumnName="Поставщик" />
+                <ScalarProperty Name="Производитель" ColumnName="Производитель" />
+                <ScalarProperty Name="Размер_максимально_возможной_скидки" ColumnName="Размер_максимально_возможной_скидки" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Единица_измерения" ColumnName="Единица_измерения" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

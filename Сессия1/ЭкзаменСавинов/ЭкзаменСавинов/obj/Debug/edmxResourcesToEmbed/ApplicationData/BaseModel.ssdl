@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Bd_SavinovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="КатегорииТоваров">
+    <Key>
+      <PropertyRef Name="КодКатегории" />
+    </Key>
+    <Property Name="КодКатегории" Type="float" Nullable="false" />
+    <Property Name="НазваниеКатегории" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Пользователи">
+    <Key>
+      <PropertyRef Name="Логин" />
+    </Key>
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Имя, отчество" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Логин" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Пароль" Type="nvarchar" MaxLength="255" />
+    <Property Name="Роли" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Роли">
+    <Key>
+      <PropertyRef Name="КодРоли" />
+    </Key>
+    <Property Name="КодРоли" Type="float" Nullable="false" />
+    <Property Name="НазваниеРоли" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Товары">
+    <Key>
+      <PropertyRef Name="Артикул" />
+    </Key>
+    <Property Name="Артикул" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Единица_измерения" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Стоимость" Type="float" Nullable="false" />
+    <Property Name="Размер_максимально_возможной_скидки" Type="float" Nullable="false" />
+    <Property Name="Производитель" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Поставщик" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Категория_товара" Type="float" Nullable="false" />
+    <Property Name="Действующая_скидка" Type="float" Nullable="false" />
+    <Property Name="Кол-во_на _складе" Type="float" Nullable="false" />
+    <Property Name="Описание" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Изображение" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK_Пользователи_Роли">
+    <End Role="Роли" Type="Self.Роли" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Роли">
+        <PropertyRef Name="КодРоли" />
+      </Principal>
+      <Dependent Role="Пользователи">
+        <PropertyRef Name="Роли" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Роли_Роли">
+    <End Role="Роли" Type="Self.Роли" Multiplicity="1" />
+    <End Role="Роли1" Type="Self.Роли" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Роли">
+        <PropertyRef Name="КодРоли" />
+      </Principal>
+      <Dependent Role="Роли1">
+        <PropertyRef Name="КодРоли" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Товары_КатегорииТоваров">
+    <End Role="КатегорииТоваров" Type="Self.КатегорииТоваров" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Товары" Type="Self.Товары" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="КатегорииТоваров">
+        <PropertyRef Name="КодКатегории" />
+      </Principal>
+      <Dependent Role="Товары">
+        <PropertyRef Name="Категория_товара" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Bd_SavinovModelContainer">
+    <EntitySet Name="КатегорииТоваров" EntityType="Self.КатегорииТоваров" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Роли" EntityType="Self.Роли" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Товары" EntityType="Self.Товары" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Пользователи_Роли" Association="Self.FK_Пользователи_Роли">
+      <End Role="Роли" EntitySet="Роли" />
+      <End Role="Пользователи" EntitySet="Пользователи" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Роли_Роли" Association="Self.FK_Роли_Роли">
+      <End Role="Роли" EntitySet="Роли" />
+      <End Role="Роли1" EntitySet="Роли" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Товары_КатегорииТоваров" Association="Self.FK_Товары_КатегорииТоваров">
+      <End Role="КатегорииТоваров" EntitySet="КатегорииТоваров" />
+      <End Role="Товары" EntitySet="Товары" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

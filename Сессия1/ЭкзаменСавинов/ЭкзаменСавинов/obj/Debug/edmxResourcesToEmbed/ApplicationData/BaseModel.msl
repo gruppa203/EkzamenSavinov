@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Bd_SavinovModelContainer" CdmEntityContainer="Bd_SavinovEntities">
+    <EntitySetMapping Name="КатегорииТоваров">
+      <EntityTypeMapping TypeName="Bd_SavinovModel.КатегорииТоваров">
+        <MappingFragment StoreEntitySet="КатегорииТоваров">
+          <ScalarProperty Name="НазваниеКатегории" ColumnName="НазваниеКатегории" />
+          <ScalarProperty Name="КодКатегории" ColumnName="КодКатегории" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Пользователи">
+      <EntityTypeMapping TypeName="Bd_SavinovModel.Пользователи">
+        <MappingFragment StoreEntitySet="Пользователи">
+          <ScalarProperty Name="Роли" ColumnName="Роли" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+          <ScalarProperty Name="Имя__отчество" ColumnName="Имя, отчество" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Роли">
+      <EntityTypeMapping TypeName="Bd_SavinovModel.Роли">
+        <MappingFragment StoreEntitySet="Роли">
+          <ScalarProperty Name="НазваниеРоли" ColumnName="НазваниеРоли" />
+          <ScalarProperty Name="КодРоли" ColumnName="КодРоли" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Товары">
+      <EntityTypeMapping TypeName="Bd_SavinovModel.Товары">
+        <MappingFragment StoreEntitySet="Товары">
+          <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+          <ScalarProperty Name="Описание" ColumnName="Описание" />
+          <ScalarProperty Name="Кол_во_на__складе" ColumnName="Кол-во_на _складе" />
+          <ScalarProperty Name="Действующая_скидка" ColumnName="Действующая_скидка" />
+          <ScalarProperty Name="Категория_товара" ColumnName="Категория_товара" />
+          <ScalarProperty Name="Поставщик" ColumnName="Поставщик" />
+          <ScalarProperty Name="Производитель" ColumnName="Производитель" />
+          <ScalarProperty Name="Размер_максимально_возможной_скидки" ColumnName="Размер_максимально_возможной_скидки" />
+          <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+          <ScalarProperty Name="Единица_измерения" ColumnName="Единица_измерения" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
